@@ -6,11 +6,17 @@ jobs:
   build-linux:
     runs-on: ubuntu-22.04
 
+    container:
+      image: ubuntu:22.04
+      options: --privileged
+    env:
+      PYTHON_VERSION: 3.12.2
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       with:
-        python-version: '3.10' 
+        python-version: ${{env.PYTHON_VERSION}}
         cache: pip
 
     - name: Install dependencies
@@ -47,14 +53,13 @@ jobs:
   build-mac:
     runs-on: macos-13
     env:
-      PYTHON_VERSION: 3.6.8
       MACOSX_DEPLOYMENT_TARGET: 10.9
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       with:
-        python-version: '3.10' 
+        python-version: ${{env.PYTHON_VERSION}}
         cache: pip
 
     - name: Setup venv
@@ -79,9 +84,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: ${{env.PYTHON_VERSION}}
 
     - name: Setup venv
       run: |
