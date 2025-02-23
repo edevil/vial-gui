@@ -4,10 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build-linux:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     container:
-      image: ubuntu:24.04
+      image: ubuntu:22.04
       options: --privileged
     env:
       PYTHON_VERSION: 3.12.2
